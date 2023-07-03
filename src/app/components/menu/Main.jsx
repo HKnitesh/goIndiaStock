@@ -3,7 +3,8 @@ import { BsFillCaretRightFill } from "react-icons/bs";
 import { useState } from "react";
 import SideNavBar from "../menu/SideNavBar";
 import DisscussionFourm from "./DisscussionFourm";
-import MarketStories from "./MarketStories";
+import MarketData from "./MarketData";
+import MarketStory from "./MarketStory";
 
 
 export default function Main() {
@@ -15,7 +16,7 @@ export default function Main() {
         setShow01(true);
         setShow02(false);
     }
-    const showMarket =() => {
+    const showMarket = () => {
         setShow01(false)
         setShow02(true);
     }
@@ -27,11 +28,19 @@ export default function Main() {
     const setMenu = {
         left: '0',
     };
-    return (
-        <div className="flex flex-row bg-[#d3d3d394] h-fit w-full ">
+    const marketStoryWidth = {
+        // '@media(min - width: 768px)': { width: '25%' },
+        width: '25%',
+    };
+    const marketStoryDefaultWidth = {
+        width: '50%',
+    };
 
-            <div className={`grid  flex-row relative h-fit min-h-screen w-fit z-10 `}>
-                {toggle ? <SideNavBar className=''/>: null}
+    return (
+        <div className="flex flex-row bg-[#d3d3d394] h-fit w-full relative ">
+
+            <div className={`flex flex-row  h-fit min-h-screen w-fit z-10 absolute`}>
+                {toggle ? <SideNavBar className='' /> : null}
 
                 <button
                     onClick={() => { setToggle(!toggle) }}
@@ -50,7 +59,25 @@ export default function Main() {
 
                 <div className="flex flex-row w-screen ">
                     {show01 ? <DisscussionFourm className='md:w-1/2 w-full' /> : null}
-                    {show02 ? <MarketStories className='md:w-1/2 w-full' /> : null}
+                    {/* MarketStories */}
+                    {show02 ? <div className={`flex flex-col ms-11 mt-2 md:w-1/2 w-full`}
+                    // style={toggle ? marketStoryWidth : marketStoryDefaultWidth}
+                    >
+                        <h1 className="text-red-500  text-lg pt-1 font-semibold mb-8 hidden md:block">Market Stories</h1>
+                        <div className="grid gap-4 md:grid-cols-2 grid-cols-1 mt-4  overflow-y-scroll md:h-[560px] h-screen"
+                        >
+
+                            {MarketData?.map((data) =>
+                                <MarketStory
+                                    key={data.key}
+                                    details={data.details}
+                                    urls={data.urls}
+                                />
+                            )}
+
+                        </div>
+                    </div>
+                        : null}
                 </div>
             </div>
         </div>
