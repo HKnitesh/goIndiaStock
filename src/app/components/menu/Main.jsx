@@ -30,7 +30,7 @@ export default function Main() {
     return (
         <div className="flex flex-row bg-[#d3d3d394] h-fit w-full ">
 
-            <div className={`grid  flex-row relative h-fit min-h-[80vh] w-fit z-10 `}>
+            <div className={`grid  flex-row relative h-fit min-h-screen w-fit z-10 `}>
                 {toggle ? <SideNavBar className=''/>: null}
 
                 <button
