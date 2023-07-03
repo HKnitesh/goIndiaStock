@@ -27,7 +27,7 @@ export default function DisscussionFourm({ className }) {
                 </div>
             </div>
 
-            <div className="flex flex-col ms-7 gap-3 overflow-y-scroll h-[500px]">
+            <div className="flex flex-col ms-7 gap-3 overflow-y-scroll md:h-[500px] h-screen">
 
                 {AccountData?.map((data) =>
                     <DisscussionAccount 
